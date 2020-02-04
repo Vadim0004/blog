@@ -10896,6 +10896,6 @@ body {
 }
 
 .app-content {
-  float: 1;
+  flex: 1;
 }
 

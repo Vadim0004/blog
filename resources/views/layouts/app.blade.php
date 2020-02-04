@@ -20,7 +20,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-<div id="app">
+<header id="app">
     <nav class="navbar navbar-expand-md navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
@@ -76,22 +76,21 @@
             </div>
         </div>
     </nav>
+</header>
 
-    <main class="app-content py-3">
-        <div class="container">
-            @yield('content')
+<main class="app-content py-3">
+    <div class="container">
+        @yield('content')
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="border-top pt-3">
+            <p>&copy; {{date('Y')}} - Adverts</p>
         </div>
-    </main>
+    </div>
+</footer>
 
-    <footer>
-        <div class="container">
-            <div class="border-top pt-3">
-                <p>&copy; {{date('Y')}} - Adverts</p>
-            </div>
-        </div>
-    </footer>
-</div>
-
-<script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>
