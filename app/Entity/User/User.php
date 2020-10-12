@@ -7,6 +7,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Str;
 
 /**
+ * App\Entity\User\User
+ *
  * @property int $id
  * @property string $name
  * @property string $email
@@ -14,6 +16,25 @@ use Illuminate\Support\Str;
  * @property string $remember_token
  * @property string $status
  * @property string $verify_token
+ * @property string|null $email_verified_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read int|null $notifications_count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Entity\User\User newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Entity\User\User newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Entity\User\User query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Entity\User\User whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Entity\User\User whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Entity\User\User whereEmailVerifiedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Entity\User\User whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Entity\User\User whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Entity\User\User wherePassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Entity\User\User whereRememberToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Entity\User\User whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Entity\User\User whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Entity\User\User whereVerifyToken($value)
+ * @mixin \Eloquent
  */
 class User extends Authenticatable
 {
