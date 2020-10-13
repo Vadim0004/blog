@@ -6,6 +6,7 @@ use App\Entity\User\User;
 use App\Http\Requests\Admin\Users\CreateRequest;
 use App\Http\Requests\Admin\Users\UpdateRequest;
 use App\Http\Controllers\Controller;
+use App\Repositories\Eloquent\User\Filters\ByOrderIdUser;
 use App\Repositories\Eloquent\User\Filters\ByStatusUser;
 use App\UseCases\Auth\RegisterService;
 use App\Repositories\Eloquent\User\EloquentUserRepository;
@@ -30,7 +31,7 @@ class UsersController extends Controller
 
     public function index()
     {
-        $users = $this->users->withFilter([new ByStatusUser(User::STATUS_ACTIVE)])->paginate();
+        $users = $this->users->withFilter([new ByOrderIdUser('asc')])->paginate();
 
         return view('admin.users.index', compact('users'));
     }

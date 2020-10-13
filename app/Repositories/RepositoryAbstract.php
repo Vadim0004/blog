@@ -53,7 +53,7 @@ abstract class RepositoryAbstract implements RepositoryInterface, FiltersInterfa
         return $model;
     }
 
-    public function paginate($perPage = 15)
+    public function paginate(int $perPage = 15)
     {
         return $this->entity->paginate($perPage);
     }
@@ -63,17 +63,17 @@ abstract class RepositoryAbstract implements RepositoryInterface, FiltersInterfa
         return $this->entity->create($properties);
     }
 
-    public function update($id, array $properties)
+    public function update(int $id, array $properties)
     {
         return $this->find($id)->update($properties);
     }
 
-    public function delete($id)
+    public function delete(int $id)
     {
         return $this->find($id)->delete();
     }
 
-    public function withFilter($filters)
+    public function withFilter(array $filters)
     {
         $filters = Arr::flatten($filters);
 

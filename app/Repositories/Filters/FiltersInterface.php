@@ -4,5 +4,5 @@ namespace App\Repositories\Filters;
 
 interface FiltersInterface
 {
-    public function withFilters($filters);
+    public function withFilters(array $filters);
 }
