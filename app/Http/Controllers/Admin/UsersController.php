@@ -7,7 +7,6 @@ use App\Http\Requests\Admin\Users\CreateRequest;
 use App\Http\Requests\Admin\Users\UpdateRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\Eloquent\User\Filters\ByOrderIdUser;
-use App\Repositories\Eloquent\User\Filters\ByStatusUser;
 use App\UseCases\Auth\RegisterService;
 use App\Repositories\Eloquent\User\EloquentUserRepository;
 

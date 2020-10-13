@@ -12,7 +12,7 @@ class EloquentUserRepository extends RepositoryAbstract
         return User::class;
     }
 
-    public function withFilters($filters)
+    public function withFilters(array $filters)
     {
         // TODO: Implement withFilters() method.
     }
