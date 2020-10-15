@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Eloquent\User\Filters;
+namespace App\Repositories\Eloquent\Filters;
 
 use App\Repositories\Filters\FilterInterface;
 

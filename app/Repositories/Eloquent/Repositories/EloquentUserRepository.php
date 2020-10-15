@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Eloquent\User;
+namespace App\Repositories\Eloquent\Repositories;
 
 use App\Repositories\RepositoryAbstract;
 use App\Entity\User\User;
