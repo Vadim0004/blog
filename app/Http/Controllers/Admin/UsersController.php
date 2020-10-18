@@ -6,9 +6,9 @@ use App\Entity\User\User;
 use App\Http\Requests\Admin\Users\CreateRequest;
 use App\Http\Requests\Admin\Users\UpdateRequest;
 use App\Http\Controllers\Controller;
-use App\Repositories\Eloquent\Filters\OrderBy;
 use App\UseCases\Auth\RegisterService;
-use App\Repositories\Eloquent\Repositories\EloquentUserRepository;
+use App\Repositories\UserRepository;
+use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
@@ -18,21 +18,26 @@ class UsersController extends Controller
     private $service;
 
     /**
-     * @var EloquentUserRepository
+     * @var UserRepository
      */
-    private $users;
+    private $repository;
 
-    public function __construct(RegisterService $service, EloquentUserRepository $users)
+    public function __construct(RegisterService $service, UserRepository $repository)
     {
         $this->service = $service;
-        $this->users = $users;
+        $this->repository = $repository;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $users = $this->users->withFilter([new OrderBy('id')])->paginate();
+        $filter = $this->repository->getFilter()->fromRequest($request);
+        $sorter = $this->repository->getSorter()->setField('name')->setDirection('asc');
+        $pagination = $this->repository->getPagination();
 
-        return view('admin.users.index', compact('users'));
+        $users = $this->repository->all($filter, $sorter, $pagination, $pagination);
+        $statuses = User::getStatuses();
+
+        return view('admin.users.index', compact('users', 'statuses'));
     }
 
     public function create()

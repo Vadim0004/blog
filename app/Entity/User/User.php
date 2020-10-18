@@ -98,6 +98,19 @@ class User extends Authenticatable
         return $this->status === self::STATUS_ACTIVE;
     }
 
+    /**
+     * Get Statuses
+     *
+     * @return string[]
+     */
+    public static function getStatuses(): array
+    {
+        return [
+            self::STATUS_WAIT => 'Waiting',
+            self::STATUS_ACTIVE => 'Active',
+        ];
+    }
+
     public function verify(): void
     {
         if (!$this->isWait()) {
