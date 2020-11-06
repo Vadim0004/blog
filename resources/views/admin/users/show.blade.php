@@ -45,6 +45,17 @@
                 @endif
             </td>
         </tr>
+        <tr>
+            <th>Role</th>
+            <td>
+                @if ($user->isAdmin())
+                    <span class="badge badge-secondary">Admin</span>
+                @endif
+                @if (!$user->isAdmin())
+                    <span class="badge badge-primary">User</span>
+                @endif
+            </td>
+        </tr>
         <tbody>
         </tbody>
     </table>
