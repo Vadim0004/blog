@@ -16,6 +16,7 @@ use Illuminate\Support\Str;
  * @property string $remember_token
  * @property string $status
  * @property string $verify_token
+ * @property string $role
  * @property string|null $email_verified_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -43,14 +44,27 @@ class User extends Authenticatable
     public const STATUS_WAIT = 'wait';
     public const STATUS_ACTIVE = 'active';
 
+    public const ROLE_USER = 'user';
+    public const ROLE_MODERATOR = 'moderator';
+    public const ROLE_ADMIN = 'admin';
+
     protected $fillable = [
-        'name', 'email', 'password', 'status', 'verify_token',
+        'name', 'email', 'password', 'status', 'verify_token', 'role',
     ];
     protected $hidden = [
         'password', 'remember_token',
     ];
 
-    /**
+    public static function rolesList(): array
+    {
+        return [
+            self::ROLE_USER => 'User',
+            self::ROLE_MODERATOR => 'Moderator',
+            self::ROLE_ADMIN => 'Admin',
+        ];
+    }
+
+        /**
      * @param string $name
      * @param string $email
      * @param string $password
@@ -63,6 +77,7 @@ class User extends Authenticatable
             'email' => $email,
             'password' => bcrypt($password),
             'verify_token' => Str::uuid(),
+            'role' => self::ROLE_USER,
             'status' => self::STATUS_WAIT,
         ]);
     }
@@ -79,7 +94,24 @@ class User extends Authenticatable
             'email' => $email,
             'password' => bcrypt(Str::random()),
             'status' => self::STATUS_ACTIVE,
+            'role' => self::ROLE_USER,
         ]);
+    }
+
+    public function changeRole($role): void
+    {
+        if (!\in_array($role, [self::ROLE_USER, self::ROLE_ADMIN], true)) {
+            throw new \InvalidArgumentException('Undefined role "' . $role . '"');
+        }
+        if ($this->role === $role) {
+            throw new \DomainException('Role is already assigned.');
+        }
+        $this->update(['role' => $role]);
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->role === self::ROLE_ADMIN;
     }
 
     /**
