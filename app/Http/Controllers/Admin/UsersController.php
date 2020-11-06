@@ -36,8 +36,9 @@ class UsersController extends Controller
 
         $users = $this->repository->all($filter, $sorter, $pagination);
         $statuses = User::getStatuses();
+        $roles = User::rolesList();
 
-        return view('admin.users.index', compact('users', 'statuses'));
+        return view('admin.users.index', compact('users', 'statuses', 'roles'));
     }
 
     public function create()

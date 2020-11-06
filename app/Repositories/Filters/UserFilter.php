@@ -24,6 +24,10 @@ class UserFilter implements FilterInterface
      * @var string
      */
     private $status;
+    /**
+     * @var string
+     */
+    private $role;
 
     /**
      * Set Id
@@ -78,6 +82,17 @@ class UserFilter implements FilterInterface
     }
 
     /**
+     * @param string $role
+     * @return $this
+     */
+    public function setRole(string $role)
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    /**
      * Filter
      *
      * @param Builder $query
@@ -96,6 +111,9 @@ class UserFilter implements FilterInterface
         }
         if ($this->status) {
             $query->where('status', $this->status);
+        }
+        if ($this->role) {
+            $query->where('role', $this->role);
         }
 
         return $query;
@@ -120,6 +138,9 @@ class UserFilter implements FilterInterface
         }
         if (!empty($value = $request->get('status'))) {
             $this->setStatus($value);
+        }
+        if (!empty($value = $request->get('role'))) {
+            $this->setRole($value);
         }
 
         return $this;

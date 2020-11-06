@@ -35,7 +35,21 @@
                                 <option value=""></option>
                                 @foreach ($statuses as $value => $label)
                                     <option
-                                        value="{{ $value }}"{{ $value === request('status') ? ' selected' : '' }}>{{ $label }}</option>
+                                        value="{{ $value }}"{{ $value === request('status') ? ' selected' : '' }}>{{ $label }}
+                                    </option>
+                                @endforeach;
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label for="role" class="col-form-label">Role</label>
+                            <select id="role" class="form-control" name="role">
+                                <option value=""></option>
+                                @foreach ($roles as $value => $label)
+                                    <option
+                                        value="{{ $value }}"{{ $value === request('rule') ? ' selected' : '' }}>{{ $label }}
+                                    </option>
                                 @endforeach;
                             </select>
                         </div>
