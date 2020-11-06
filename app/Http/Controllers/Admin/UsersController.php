@@ -34,7 +34,7 @@ class UsersController extends Controller
         $sorter = $this->repository->getSorter()->setField('name')->setDirection('asc');
         $pagination = $this->repository->getPagination();
 
-        $users = $this->repository->all($filter, $sorter, $pagination, $pagination);
+        $users = $this->repository->all($filter, $sorter, $pagination);
         $statuses = User::getStatuses();
 
         return view('admin.users.index', compact('users', 'statuses'));
